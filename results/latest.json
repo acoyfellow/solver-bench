@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-11-11T22:30:16.319Z",
-  "totalScore": 5,
-  "maxScore": 5,
+  "timestamp": "2026-11-11T22:33:57.060Z",
+  "totalScore": 15,
+  "maxScore": 15,
   "results": [
     {
       "task": "connect4",
@@ -9,12 +9,12 @@
         {
           "name": "Cost collapse",
           "pass": true,
-          "detail": "solver 225ms $0 vs LLM ~2000ms ~$0.05 | 9x speedup"
+          "detail": "solver 226ms $0 vs LLM ~2000ms ~$0.05 | 9x speedup"
         },
         {
           "name": "Verifiability",
           "pass": true,
-          "detail": "deterministic: true | repeatability 100/100"
+          "detail": "deterministic: true | repeatability 99/99"
         },
         {
           "name": "Speed",
@@ -33,7 +33,71 @@
         }
       ],
       "score": 5,
-      "durationMs": 9717
+      "durationMs": 9951
+    },
+    {
+      "task": "pathfinding",
+      "proofs": [
+        {
+          "name": "Cost collapse",
+          "pass": true,
+          "detail": "A* 1ms $0 vs LLM ~2000ms ~$0.05"
+        },
+        {
+          "name": "Verifiability",
+          "pass": true,
+          "detail": "deterministic: true | valid paths: 50/50"
+        },
+        {
+          "name": "Speed",
+          "pass": true,
+          "detail": "avg 0ms max 1ms | LLM 2000ms+"
+        },
+        {
+          "name": "Self-improvement data",
+          "pass": true,
+          "detail": "16/20 maps solved, 624 steps of training data"
+        },
+        {
+          "name": "Composition",
+          "pass": true,
+          "detail": "A* solver composes with path validator | path length: 39"
+        }
+      ],
+      "score": 5,
+      "durationMs": 17
+    },
+    {
+      "task": "scheduling",
+      "proofs": [
+        {
+          "name": "Cost collapse",
+          "pass": true,
+          "detail": "scheduler 0ms $0 vs LLM ~2000ms ~$0.05"
+        },
+        {
+          "name": "Verifiability",
+          "pass": true,
+          "detail": "deterministic: true | valid: 30/30"
+        },
+        {
+          "name": "Speed",
+          "pass": true,
+          "detail": "avg 0ms max 0ms for 50 jobs | LLM 2000ms+"
+        },
+        {
+          "name": "Self-improvement data",
+          "pass": true,
+          "detail": "600 job assignments from 20 random job sets"
+        },
+        {
+          "name": "Composition",
+          "pass": true,
+          "detail": "scheduler composes with validator | makespan: 45"
+        }
+      ],
+      "score": 5,
+      "durationMs": 2
     }
   ]
 }
