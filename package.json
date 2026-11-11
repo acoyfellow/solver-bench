@@ -1,0 +1,9 @@
+{
+  "name": "solver-bench",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "bench": "bun src/bench.ts",
+    "connect4": "bun src/tasks/connect4.ts"
+  }
+}

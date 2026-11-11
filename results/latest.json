@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-11-11T22:30:16.319Z",
+  "totalScore": 5,
+  "maxScore": 5,
+  "results": [
+    {
+      "task": "connect4",
+      "proofs": [
+        {
+          "name": "Cost collapse",
+          "pass": true,
+          "detail": "solver 225ms $0 vs LLM ~2000ms ~$0.05 | 9x speedup"
+        },
+        {
+          "name": "Verifiability",
+          "pass": true,
+          "detail": "deterministic: true | repeatability 100/100"
+        },
+        {
+          "name": "Speed",
+          "pass": true,
+          "detail": "avg 31ms max 39ms | LLM 2000ms+"
+        },
+        {
+          "name": "Self-improvement data",
+          "pass": true,
+          "detail": "210 moves of training data from 5 self-play games"
+        },
+        {
+          "name": "Composition",
+          "pass": true,
+          "detail": "bestMove col 3 (win) matches analyse verdicts"
+        }
+      ],
+      "score": 5,
+      "durationMs": 9717
+    }
+  ]
+}
