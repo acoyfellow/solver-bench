@@ -61,26 +61,26 @@ Register in `src/tasks/index.ts`. Run `bun run bench`.
 
 ## FAQ
 
-**Isn't this just... programming?**
-Yes. That's the point. The benchmark measures whether an agent that *writes code* beats an agent that *asks an LLM to think*. The five proofs are the scorecard.
+**Is this just programming?**
+Yes. The question is whether an agent that writes a solver beats an agent that calls an LLM for each decision. The benchmark runs both and scores the difference.
 
-**Why Connect 4? It's a toy problem.**
-It's solved, verifiable, and has ground truth — a winning move is a winning move. If the solver approach can't prove itself on a solved game, it has no business on harder problems. The point isn't the game, it's the pattern.
+**Why Connect 4?**
+Connect 4 is solved. A winning move is verifiable. If the solver approach fails on a game with ground truth, it will fail on harder problems. The game is the test, not the point.
 
 **Can this scale to chess?**
-No. Chess has ~10^47 positions. Connect 4 has ~10^13. The solver approach works when the search space is tractable. The benchmark doesn't claim otherwise — it measures the pattern, not the ceiling.
+No. Chess has roughly 10^47 positions. Connect 4 has roughly 10^13. The solver approach works when the search space fits in the available time. The benchmark runs at depth 9 and finishes in under 250ms. It makes no claim about deeper games.
 
 **What if the solver is wrong?**
-That's what property-based testing is for. Each task verifies determinism (same input → same output) and correctness (path validity, schedule constraints, win detection). An LLM call can't be verified this way. A solver can.
+Each task runs property tests. Connect4 checks the solver picks the same move on 99 random boards. Pathfinding checks every path avoids walls and reaches the goal. Scheduling checks every job respects dependencies. An LLM call does not pass these tests because it has no contract.
 
-**Why not just use an LLM + tools?**
-You can. But every LLM call costs money and time, and the output is a sample, not a function. The solver compiles the decision into code that runs for free, instantly, and provably. The question is whether that tradeoff wins — the benchmark answers with numbers.
+**Why not use an LLM with tools?**
+You can. Each call costs about $0.05 and takes about 2 seconds. The solver costs $0 and takes 1-250ms depending on the task. The benchmark measures both on the same problems so you can decide.
 
-**What's the handwired thing?**
-A separate experiment in `games/c4/handwired/` — compiling the solver into a differentiable neural net. The proof: the handwired circuit matches the JS solver on random boards. It shows the evaluation function can be trained, not just hand-tuned. The benchmark doesn't depend on it.
+**What is the handwired experiment?**
+A separate folder (`games/c4/handwired/`) compiles the Connect 4 solver into a differentiable circuit. The circuit matches the JS solver on 81 random boards. It shows the evaluation function can be trained. This benchmark does not depend on it.
 
-**Who is this for?**
-Anyone building agents. If your agent makes the same kind of decision more than a few times, it probably should compile a solver instead of asking the LLM each time. This benchmark gives you the receipts.
+**Who should use this?**
+Anyone building an agent that repeats a decision. If the agent makes the same kind of choice more than a few times, a solver is cheaper and faster. The benchmark gives you the measurement.
 
 ## Explanation
 
